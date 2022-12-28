@@ -1033,5 +1033,5 @@ urlpatterns += [
 
 # edx-drf-extensions csrf app
 urlpatterns += [
-    path(r'^partners/', include('organizations.urls')),
+    path('partners/', include('organizations.urls')),
 ]

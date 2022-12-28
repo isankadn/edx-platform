@@ -300,6 +300,11 @@ class TeamsConfigField(Dict):
 
 
 class CourseFields:  # lint-amnesty, pylint: disable=missing-class-docstring
+    cluster = List(
+        display_name=_("Course Cluster"),
+        help=_('Add course cluster name(s) by comma to assign courses in to clusters: "[\"Education\", \"Natural Sciences\", \"Social and Human Sciences\", \"Culture\", \"Communication and Information\"]".'),
+        scope=Scope.settings
+    )
     lti_passports = List(
         display_name=_("LTI Passports"),
         help=_('Enter the passports for course LTI tools in the following format: "id:client_key:client_secret".'),
