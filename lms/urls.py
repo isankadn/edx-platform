@@ -1030,3 +1030,8 @@ urlpatterns += [
 urlpatterns += [
     path('api/mfe_config/v1', include(('lms.djangoapps.mfe_config_api.urls', 'lms.djangoapps.mfe_config_api'), namespace='mfe_config_api'))
 ]
+
+# edx-drf-extensions csrf app
+urlpatterns += [
+    path(r'^partners/', include('organizations.urls')),
+]

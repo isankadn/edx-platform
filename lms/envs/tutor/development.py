@@ -19,7 +19,7 @@ mongodb_parameters = {
     "ssl": False,
     "authSource": "admin",
     "replicaSet": None,
-    
+
 }
 DOC_STORE_CONFIG = mongodb_parameters
 CONTENTSTORE = {
@@ -39,7 +39,7 @@ DJANGO_REDIS_IGNORE_EXCEPTIONS = True
 
 # Elasticsearch connection parameters
 ELASTIC_SEARCH_CONFIG = [{
-  
+
   "host": "elasticsearch",
   "port": 9200,
 }]

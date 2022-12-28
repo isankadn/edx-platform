@@ -89,7 +89,7 @@ edx-event-bus-kafka>=0.6.2          # Kafka implementation of event bus
 edx-milestones
 edx-name-affirmation
 edx-opaque-keys
-edx-organizations
+#edx-organizations
 edx-proctoring>=2.0.1
 edx-proctoring-proctortrack==1.0.5  # Intentionally and permanently pinned to ensure code changes are reviewed
 edx-rest-api-client
