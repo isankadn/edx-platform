@@ -997,7 +997,7 @@ class RegistrationFormFactory:
         else:
             # Translators: This is a legal document users must agree to
             # in order to register a new account.
-            terms_label = _("Terms of Service and Honor Code")
+            terms_label = _(u"Terms of Service")
             terms_link = marketing_link("HONOR")
 
         # Translators: "Terms of Service" is a legal document users must agree to
@@ -1026,10 +1026,7 @@ class RegistrationFormFactory:
 
             pp_link = marketing_link("PRIVACY")
             label = Text(_(
-                "By creating an account, you agree to the \
-                  {terms_of_service_link_start}{terms_of_service}{terms_of_service_link_end} \
-                  and you acknowledge that {platform_name} and each Member process your personal data in accordance \
-                  with the {privacy_policy_link_start}Privacy Policy{privacy_policy_link_end}."
+                u"By creating an account, you agree to the {terms_of_service_link_start}{terms_of_service}{terms_of_service_link_end} and you acknowledge that {platform_name} and each Member process your personal data in accordance with the {privacy_policy_link_start}Privacy Policy{privacy_policy_link_end}."
             )).format(
                 platform_name=configuration_helpers.get_value("PLATFORM_NAME", settings.PLATFORM_NAME),
                 terms_of_service=terms_label,

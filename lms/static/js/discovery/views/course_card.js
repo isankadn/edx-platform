@@ -4,9 +4,8 @@
         'underscore',
         'backbone',
         'gettext',
-        'edx-ui-toolkit/js/utils/date-utils',
-        'edx-ui-toolkit/js/utils/html-utils'
-    ], function($, _, Backbone, gettext, DateUtils, HtmlUtils) {
+        'edx-ui-toolkit/js/utils/date-utils'
+    ], function($, _, Backbone, gettext, DateUtils) {
         'use strict';
 
         function formatDate(date, userLanguage, userTimezone) {
@@ -27,12 +26,57 @@
             className: 'courses-listing-item',
 
             initialize: function() {
-                this.tpl = HtmlUtils.template($(this.templateId).html());
+                this.tpl = _.template($(this.templateId).html());
             },
 
             render: function() {
                 var data = _.clone(this.model.attributes);
-                var userLanguage = '',
+ 		// start of course tag data
+                let sd = ''
+                let s_y = ''
+                let s_m = ''
+                let s_d = ''
+                sd = new Date(data.start)
+                s_y = sd.getFullYear()
+                s_m = sd.getMonth()
+                s_d = sd.getDay()
+                var start_date = new Date(s_y, s_m, s_d);
+                var ed = new Date(data.end)
+                var e_y = ed.getFullYear()
+                var e_m = ed.getMonth()
+                var e_d = ed.getDay()
+                var end_date = new Date(e_y, e_m, e_d);
+                var today = new Date(Date.now())
+
+                // console.log(start_date)
+                // console.log(end_date)
+                // console.log(data.end)
+
+                if (sd < today && data.end != '' && ed < today) {
+                    // console.log('finished')
+                    data.status_code = "finished"
+                    data.status = "Finalized"
+                } else if (sd > today && data.invitation_only == false) {
+                    // console.log('future')
+                    data.status_code = "future"
+                    data.status = "Open for Enrollment"
+                } else if (sd > today && data.invitation_only == true) {
+                    // console.log('future')
+                    data.status_code = "invitations_only"
+                    data.status = "By Invitation"
+                } else if (sd < today && data.invitation_only == false) {
+                    // console.log('ongoing')
+                    data.status_code = "ongoing"
+                    data.status = "Ongoing"
+                } else if (sd < today && data.invitation_only == true) {
+                    // console.log('ongoing')
+                    data.status_code = "invitations_only"
+                    data.status = "By Invitation"
+                }
+
+
+		// end of course tag data
+		var userLanguage = '',
                     userTimezone = '';
                 if (this.model.userPreferences !== undefined) {
                     userLanguage = this.model.userPreferences.userLanguage;
@@ -52,10 +96,7 @@
                     userLanguage,
                     userTimezone
                 );
-                HtmlUtils.setHtml(
-                    this.$el,
-                    this.tpl(data)
-                );
+                this.$el.html(this.tpl(data));
                 return this;
             }
 

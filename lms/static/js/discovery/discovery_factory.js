@@ -38,6 +38,7 @@
                         search.refineSearch(filters.getTerms());
                     }
                 });
+                console.log("aaaaaaaaaaaaaaa bbbbbbbb")
 
                 dispatcher.listenTo(filterBar, 'clearFilter', removeFilter);
 

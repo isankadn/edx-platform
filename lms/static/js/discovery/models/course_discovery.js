@@ -23,12 +23,16 @@
 
             parse: function(response) {
                 var courses = response.results || [];
-                var facets = response.aggs || {};
-                this.courseCards.add(_.pluck(courses, 'data'));
+                var facets = response.facets || {};
+		var fill_courses = courses.filter(function(obj) {
+                    return obj.data.catalog_visibility !== 'none';
+                });
+
+                this.courseCards.add(_.pluck(fill_courses, 'data'));
 
                 this.set({
                     totalCount: response.total,
-                    latestCount: courses.length
+                    latestCount: fill_courses.length
                 });
 
                 var options = this.facetOptions;

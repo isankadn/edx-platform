@@ -20,6 +20,9 @@ define(['js/discovery/models/course_card'], function(CourseCard) {
             expect(this.card.get('image_url')).toBeDefined();
             expect(this.card.get('org')).toBeDefined();
             expect(this.card.get('id')).toBeDefined();
+            expect(this.card.get('cluster')).toBeDefined();
+	    expect(this.card.get('catalog_visibility')).toBeDefined();
+	    expect(this.card.get('invitation_only')).toBeDefined();
         });
     });
 });
