@@ -146,3 +146,7 @@ dist
 
 # Locally generated PII reports
 pii_report
+
+cms/envs/tutor/
+lms/envs/tutor/
+results.txt
