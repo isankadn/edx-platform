@@ -14,9 +14,15 @@
                     number: ''
                 },
                 start: '',
+                end: '',
+                status_code: '',
+                status: '',
                 image_url: '',
                 org: '',
-                id: ''
+                id: '',
+                cluster: '',
+                catalog_visibility: '',
+                invitation_only: ''
             }
         });
     });
