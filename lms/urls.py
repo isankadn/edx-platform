@@ -1035,3 +1035,7 @@ urlpatterns += [
 urlpatterns += [
     path('partners/', include('organizations.urls')),
 ]
+if 'unesco_programs' in settings.INSTALLED_APPS:
+    urlpatterns += [
+        path('program/', include('unesco_programs.urls')),
+    ]
