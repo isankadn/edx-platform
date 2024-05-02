@@ -32,6 +32,9 @@
 
             render: function() {
                 var data = _.clone(this.model.attributes);
+                var startDate = new Date(data.start);
+                var endDate = data.end ? new Date(data.end) : null;
+                var today = new Date();
                 // start of course tag data	
                 let sd = ''	
                 let s_y = ''	
@@ -50,24 +53,24 @@
                 var today = new Date(Date.now())	
                 // console.log(start_date)	
                 // console.log(end_date)	
-                // console.log(data.end)	
-                if (sd < today && data.end != '' && ed < today) {	
+                // console.log(endDate)	;
+                if (startDate < today && (endDate != null  && endDate < today)) {
                     // console.log('finished')	
                     data.status_code = "finished"	
                     data.status = "Finalized"	
-                } else if (sd > today && data.invitation_only == false) {	
+                } else if (startDate > today && !data.invitation_only) {
                     // console.log('future')	
                     data.status_code = "future"	
                     data.status = "Open for Enrollment"	
-                } else if (sd > today && data.invitation_only == true) {	
+                } else if (startDate > today && data.invitation_only) {
                     // console.log('future')	
                     data.status_code = "invitations_only"	
                     data.status = "By Invitation"	
-                } else if (sd < today && data.invitation_only == false) {	
+                } else if (startDate < today && !data.invitation_only) {
                     // console.log('ongoing')	
                     data.status_code = "ongoing"	
                     data.status = "Ongoing"	
-                } else if (sd < today && data.invitation_only == true) {	
+                } else if (startDate < today && data.invitation_only) {
                     // console.log('ongoing')	
                     data.status_code = "invitations_only"	
                     data.status = "By Invitation"	

@@ -25,7 +25,7 @@
                 var courses = response.results || [];
                 var facets = response.aggs || {};
                 this.courseCards.add(_.pluck(courses, 'data'));
-
+                console.log("response", response)
                 this.set({
                     totalCount: response.total,
                     latestCount: courses.length
